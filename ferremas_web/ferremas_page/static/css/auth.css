@@ -1,0 +1,96 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(220.55deg, #FFC328, #AD4510);
+    background-size: 400% 400%;             
+    animation: gradient-move 5s ease infinite;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @keyframes gradient-move {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .auth-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    border: 1px solid #e5e7eb;
+  }
+  
+  .auth-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #de7f12;
+    font-weight: 700;
+  }
+  
+  .auth-container label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.95rem;
+  }
+  
+  .auth-container input {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.3rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .auth-container input:focus {
+    outline: none;
+    border-color: #de7f12;
+  }
+  
+  .auth-container button {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #de7f12;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .auth-container button:hover {
+    background-color: #ad4510;
+  }
+  
+  .auth-container .helptext {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-top: 0.2rem;
+  }
+  
+  .auth-container .errorlist {
+    color: #b91c1c;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    list-style: none;
+    padding-left: 0;
+  }
+  .registro-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 160px); /* ajusta según alto de navbar + footer */
+    padding: 2rem 1rem;
+  }
+
+  

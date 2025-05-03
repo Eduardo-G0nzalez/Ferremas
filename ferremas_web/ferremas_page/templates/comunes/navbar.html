@@ -1,0 +1,108 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+      <img src="{% static 'img/LogoFerremas.svg' %}" alt="Logo Ferremas" height="40">
+    </a>
+
+    <div class="d-flex align-items-center ms-auto d-lg-none gap-2">
+      <button class="navbar-toggler texto-navbar border-0" type="button" data-bs-toggle="modal" data-bs-target="#navbarModal">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </button>
+    
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle texto-navbar" href="#" role="button" id="usuarioDropdownMovil" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-user-circle fa-xl"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdownMovil">
+          {% if user.is_authenticated %}
+            <li><span class="dropdown-item-text fw-semibold text-muted">{{ user.username }}</span></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
+            </li>
+          {% else %}
+            <li>
+              <a class="dropdown-item" href="{% url 'login' %}#login-form">Acceder</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    
+
+    <!-- Menú normal visible solo en escritorio -->
+    <div class="d-none d-lg-flex ms-auto align-items-center texto-navbar">
+      <ul class="navbar-nav align-items-center">
+        {% if request.path == '/' %}
+          <li class="nav-item"><a class="nav-link texto-navbar fw-semibold mx-2" href="#inicio">INICIO</a></li>
+          <li class="nav-item"><a class="nav-link texto-navbar fw-semibold mx-2" href="#quienes-somos">QUIÉNES SOMOS</a></li>
+          <li class="nav-item"><a class="nav-link texto-navbar fw-semibold mx-2" href="{% url 'productos' %}">PRODUCTOS</a></li>
+          <li class="nav-item"><a class="nav-link texto-navbar fw-semibold mx-2" href="#contacto">CONTACTO</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link texto-navbar fw-semibold mx-2" href="{% url 'home' %}#inicio">INICIO</a></li>
+          <li class="nav-item"><a class="nav-link texto-navbar fw-semibold mx-2" href="{% url 'home' %}#quienes-somos">QUIÉNES SOMOS</a></li>
+          <li class="nav-item"><a class="nav-link texto-navbar fw-semibold mx-2" href="{% url 'productos' %}">PRODUCTOS</a></li>
+          <li class="nav-item"><a class="nav-link texto-navbar fw-semibold mx-2" href="{% url 'home' %}#contacto">CONTACTO</a></li>
+        {% endif %}
+      </ul>
+      <div class="dropdown ms-4">
+        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 texto-navbar fw-semibold"
+           href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-user-circle fa-lg"></i>
+          {% if user.is_authenticated %}
+            {{ user.username }}
+          {% else %}
+            Cuenta
+          {% endif %}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
+          {% if user.is_authenticated %}
+            <li>
+              <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
+            </li>
+          {% else %}
+            <li>
+              <a class="dropdown-item" href="{% url 'login' %}#login-form">Acceder</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Formulario logout invisible (requerido para método POST seguro) -->
+<form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+  {% csrf_token %}
+</form>
+
+<!-- Modal para móvil -->
+<div class="modal slide-down show-from-top" id="navbarModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog custom-navbar-modal">
+    <div class="modal-content texto-navbar position-relative">
+
+      <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+
+      <div class="modal-body d-flex flex-column justify-content-center align-items-center gap-4 text-center py-5">
+        <a class="navbar-brand mb-3" href="{% url 'home' %}">
+          <img src="{% static 'img/LogoFerremas.svg' %}" alt="Logo Ferremas" height="80">
+        </a>
+
+        {% if request.path == '/' %}
+        <a class="texto-navbar fw-bold fs-5" href="#inicio">INICIO</a>
+        <a class="texto-navbar fw-bold fs-5" href="#quienes-somos">QUIÉNES SOMOS</a>
+        <a class="texto-navbar fw-bold fs-5" href="{% url 'productos' %}">PRODUCTOS</a>
+        <a class="texto-navbar fw-bold fs-5" href="#contacto">CONTACTO</a>
+        {% else %}
+        <a class="texto-navbar fw-bold fs-5" href="{% url 'home' %}#inicio">INICIO</a>
+        <a class="texto-navbar fw-bold fs-5" href="{% url 'home' %}#quienes-somos">QUIÉNES SOMOS</a>
+        <a class="texto-navbar fw-bold fs-5" href="{% url 'productos' %}">PRODUCTOS</a>
+        <a class="texto-navbar fw-bold fs-5" href="{% url 'home' %}#contacto">CONTACTO</a>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+</div>

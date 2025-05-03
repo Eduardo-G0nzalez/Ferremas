@@ -1,0 +1,211 @@
+/* === BASE === */
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .btn-danger {
+    background-color: #de7f12;
+    border: none;
+    font-weight: 600;
+  }
+  
+  .btn-danger:hover {
+    background-color: #ad4510;
+  }
+
+  .text-rojo{
+    color:#ad4510;
+  }
+  
+  /* === WRAPPER GENERAL === */
+  .producto-detalle {
+    background-color: #f8f9fa;
+  }
+  
+  
+  .producto-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  @media (min-width: 768px) {
+    .producto-wrapper {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .producto-detalle{
+      height: 80vh;
+  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    }
+  
+  
+  /* === MINIATURAS VERTICALES EN ESCRITORIO === */
+  .thumbnails {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+  
+  .thumbnails img,
+  .miniatura-mobile {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .thumbnails img:hover,
+  .thumbnails img.active-thumbnail,
+  .miniatura-mobile:hover,
+  .miniatura-mobile.active-thumbnail {
+    border-color: #de7f12;
+    transform: scale(1.05);
+  }
+  
+  /* === IMAGEN PRINCIPAL === */
+  .main-image-wrapper {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .main-image {
+    max-height: 400px;
+    width: 100%;
+    object-fit: contain;
+  }
+  
+  /* === INFORMACIÓN DEL PRODUCTO === */
+  .producto-info {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .producto-info h2 {
+    font-size: 1.8rem;
+  }
+  
+  .producto-descripcion {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .producto-descripcion p {
+    font-size: 1rem;
+  }
+  
+  /*contacto*/
+  .contacto-section{
+    background-color: #f3a82c;
+  }
+
+  .contacto-section input,
+  .contacto-section textarea {
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+  }
+  
+  .contacto-section .form-control:focus {
+    box-shadow: none;
+    border-color: #de7f12;
+  }
+  
+  .contacto-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #de7f12;
+    border-radius: 50%;
+    font-size: 1rem;
+  }
+  
+  .contacto-section h2{
+    font-size: 2.5rem;
+  }
+  
+  .btn-enviar {
+    background-color: #de7f12 !important;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn-enviar:hover {
+    background-color: #ad4510 !important;
+    color: white;
+  }
+  
+  @media (min-width: 768px) {
+    .thumbnails {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      gap: 0.5rem;
+      max-height: none;
+    }
+  
+    .thumbnails img {
+      margin-bottom: 0;
+    }
+  }
+  
+  /* === RESPONSIVE: MÓVILES === */
+  @media (max-width: 767.98px) {
+    .producto-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .producto-info {
+      width: 100%;
+      padding: 0 1rem;
+      margin-top: 2rem;
+    }
+  
+    .main-image {
+      max-height: 280px;
+    }
+  
+    .miniatura-mobile {
+      width: 70px;
+      height: 70px;
+      border-radius: 4px;
+    }
+  
+    .main-image-wrapper h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+  
+    .producto-info h2 {
+      display: none;
+    }
+    .miniatura.active-thumbnail {
+      border-color: #de7f12 !important;
+    }
+  }
+  

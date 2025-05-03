@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="{% static 'img/logoPestaña.png' %}">
+  <title>{{ producto.nombre }} - Ferremas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="{% static 'css/navbarr.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/foot.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/productodetalle.css' %}" rel="stylesheet" />
+</head>
+<body class="bg-light">
+
+  {% include 'comunes/navbar.html' %}
+
+  <section class="producto-detalle py-5">
+    <div class="container d-flex justify-content-center">
+      <div class="producto-wrapper d-flex flex-column flex-md-row align-items-start gap-4">
+        
+        <!-- Miniaturas verticales (escritorio) -->
+        <div class="thumbnails d-none d-md-flex flex-column align-items-center">
+          <img src="{{ producto.imagenPrincipal.url }}" class="img-thumbnail miniatura" alt="Principal" data-full="{{ producto.imagenPrincipal.url }}">
+          {% if producto.imagenSecundaria1 %}
+          <img src="{{ producto.imagenSecundaria1.url }}" class="img-thumbnail miniatura" alt="Miniatura 1" data-full="{{ producto.imagenSecundaria1.url }}">
+          {% endif %}
+          {% if producto.imagenSecundaria2 %}
+          <img src="{{ producto.imagenSecundaria2.url }}" class="img-thumbnail miniatura" alt="Miniatura 2" data-full="{{ producto.imagenSecundaria2.url }}">
+          {% endif %}
+        </div>
+
+        <!-- Imagen principal + miniaturas móviles -->
+        <div class="main-image-wrapper text-center">
+          <!-- Nombre solo en móviles -->
+          <h2 class="text-rojo fw-bold d-md-none mb-3">{{ producto.nombre }}</h2>
+
+          <!-- Imagen principal -->
+          <img id="mainImage" src="{{ producto.imagenPrincipal.url }}" class="img-fluid main-image mb-3" alt="{{ producto.nombre }}">
+
+          <!-- Miniaturas móviles -->
+          <div class="d-md-none d-flex justify-content-center gap-2 mt-3 flex-wrap">
+            <img src="{{ producto.imagenPrincipal.url }}" class="miniatura-mobile miniatura" data-full="{{ producto.imagenPrincipal.url }}" alt="Principal">
+            {% if producto.imagenSecundaria1 %}
+            <img src="{{ producto.imagenSecundaria1.url }}" class="miniatura-mobile miniatura" data-full="{{ producto.imagenSecundaria1.url }}" alt="Miniatura 1">
+            {% endif %}
+            {% if producto.imagenSecundaria2 %}
+            <img src="{{ producto.imagenSecundaria2.url }}" class="miniatura-mobile miniatura" data-full="{{ producto.imagenSecundaria2.url }}" alt="Miniatura 2">
+            {% endif %}
+          </div>
+
+          <!-- Descripción en escritorio -->
+          {% if producto.descripcion %}
+          <div class="producto-descripcion d-none d-md-block text-start px-2 px-md-4 mt-4">
+            <p class="fw-bold mb-1">Descripción:</p>
+            <p class="mb-0">{{ producto.descripcion }}</p>
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- Descripción en móviles -->
+        {% if producto.descripcion %}
+        <div class="producto-descripcion d-block d-md-none text-start px-2 px-md-4 mt-4 w-100">
+          <p class="fw-bold mb-1">Descripción:</p>
+          <p class="mb-0">{{ producto.descripcion }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Información lateral -->
+        <div class="producto-info d-flex flex-column gap-3 justify-content-between">
+          {% if producto.marca %}
+          <p class="fw-semibold text-muted small text-uppercase m-0">{{ producto.marca }}</p>
+          {% endif %}
+          <h2 class="text-rojo fw-bold d-none d-md-block">{{ producto.nombre }}</h2>
+
+          {% if producto.caracteristicas %}
+          <ul class="list-unstyled m-0">
+            {% for caracteristica in producto.obtener_caracteristicas %}
+            <li><i class="fa-solid fa-circle text-rojo me-2"></i>{{ caracteristica }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          
+          <a href="#" class="btn btn-lg btn-danger fw-bold d-flex align-items-center justify-content-center gap-2 mt-2">
+            <i class="fa-solid fa-download"></i> DESCARGAR CATÁLOGO
+          </a>
+
+          {% if producto.ficha_tecnica %}
+          <div>
+            <p class="fw-semibold small text-muted mb-1">Documento PDF</p>
+            <a href="{{ producto.ficha_tecnica.url }}" target="_blank" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
+              <i class="fa-solid fa-file-pdf fa-2x text-danger"></i> {{ producto.ficha_tecnica.name|cut:"productos/" }}
+            </a>
+          </div>
+          {% endif %}
+          <a href="#" class="btn btn-danger fw-bold">¡COTIZA AHORA!</a>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contacto-section py-5">
+    <div class="container">
+      <h2 class="text-center text-white fw-bold mb-5 poppins-bold">CONTÁCTANOS</h2>
+  
+      <div class="row justify-content-center align-items-stretch gx-5">
+        
+        <!-- Formulario -->
+        <div class="col-12 col-lg-5 mb-4 d-flex">
+          <div class="p-4 bg-light rounded shadow-sm w-100 d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="text-center mb-4 poppins-semibold">¡Cotiza ahora o envía tu consulta!</h5>
+              <form class="d-flex flex-column gap-3">
+                <input type="text" class="form-control" placeholder="Nombre">
+                <input type="email" class="form-control" placeholder="Email">
+                <input type="text" class="form-control" placeholder="Asunto">
+                <textarea class="form-control" rows="4" placeholder="Mensaje"></textarea>
+                <div>
+                  <input type="checkbox" id="captcha">
+                  <label for="captcha" class="ms-2">No soy un robot</label>
+                </div>
+                <button type="submit" class="btn btn-enviar w-100 mt-2">Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Información de contacto -->
+        <div class="col-12 col-lg-5 mb-4 d-flex">
+          <div class="p-4 bg-light rounded shadow-sm w-100 d-flex flex-column justify-content-between">
+            <div class="d-flex flex-column gap-3">
+              <div class="d-flex align-items-center gap-3">
+                <i class="contacto-icon fa-solid fa-phone fa-lg text-white bg-rojo rounded-circle p-2"></i>
+                <div>
+                  <p class="mb-0">+56 9 1234 5678</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <i class="contacto-icon fa-solid fa-envelope fa-lg text-white bg-rojo rounded-circle p-2"></i>
+                <p class="mb-0">contacto@ferremas.cl</p>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <i class="contacto-icon fa-solid fa-location-dot fa-lg text-white bg-rojo rounded-circle p-2"></i>
+                <div>
+                  <p class="mb-1">¡Vísitanos en nuestras sucursales!</p>
+                </div>
+              </div>
+              <ul class="ps-5 mt-2 mb-0">
+                <li>Sucursal 1</li>
+                <li>Sucursal 2</li>
+                <li>Sucursal 3</li>
+                <li>Sucursal 4</li>
+                <li>Sucursal 5</li>
+                <li>Sucursal 6</li>
+                <li>Sucursal 7</li>
+              </ul>              
+                </div>
+              </div>                          
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+
+  {% include 'comunes/footer.html' %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'js/producto.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+    body {
+    font-family: 'Poppins', sans-serif;
+}
+    
+    .error-pago-container {
+      padding: 80px 20px;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fef6f4;
+    }
+
+    .error-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .error-card h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #c0392b;
+      margin-bottom: 20px;
+    }
+
+    .error-card p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .btn-volver {
+      background-color: #DE7F12;
+      color: white;
+      padding: 12px 24px;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-volver:hover {
+      background-color: #ad4510;
+      color: white;
+    }

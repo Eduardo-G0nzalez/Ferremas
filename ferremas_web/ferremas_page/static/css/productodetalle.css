@@ -66,14 +66,6 @@ body {
     transition: transform 0.2s ease, border-color 0.2s ease;
   }
   
-  .thumbnails img:hover,
-  .thumbnails img.active-thumbnail,
-  .miniatura-mobile:hover,
-  .miniatura-mobile.active-thumbnail {
-    border-color: #de7f12;
-    transform: scale(1.05);
-  }
-  
   /* === IMAGEN PRINCIPAL === */
   .main-image-wrapper {
     flex: 1;
@@ -207,5 +199,24 @@ body {
     .miniatura.active-thumbnail {
       border-color: #de7f12 !important;
     }
+  }
+
+  .btn-carrito-flotante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #de7f12;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    z-index: 1050;
+  }
+  
+  .btn-carrito-flotante:hover {
+    background-color: #ad4510;
+    color: white;
   }
   

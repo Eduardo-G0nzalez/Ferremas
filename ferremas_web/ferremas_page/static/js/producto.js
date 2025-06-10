@@ -19,4 +19,16 @@ document.addEventListener("DOMContentLoaded", function () {
       miniaturas[0].classList.add('active-thumbnail');
     }
   });
+
+  // Esperar a que el DOM cargue
+  document.addEventListener('DOMContentLoaded', function () {
+    const toastElList = [].slice.call(document.querySelectorAll('.toast'));
+    toastElList.forEach(function (toastEl) {
+      const toast = new bootstrap.Toast(toastEl, {
+        delay: 2000,
+        autohide: true
+      });
+      toast.show();
+    });
+  });
   

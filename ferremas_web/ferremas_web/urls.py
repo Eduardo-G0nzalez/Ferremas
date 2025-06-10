@@ -18,9 +18,10 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-from ferremas_page.views import home_view
+from ferremas_page.views import home_view, enviar_mensaje_json
 from ferremas_page import views
 from django.contrib.auth.views import LogoutView
+from ferremas_page.views import tipo_cambio_api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +34,10 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('pago/', views.iniciar_pago, name='iniciar_pago'),
     path('webpay/confirmacion/', views.webpay_confirmacion, name='webpay_confirmacion'),
+    path('carrito/', views.ver_carrito, name='ver_carrito'),
+    path('carrito/agregar/<int:producto_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
+    path('carrito/eliminar/<int:producto_id>/', views.eliminar_del_carrito, name='eliminar_del_carrito'),
+    path('carrito/agregar-desde-carrito/<int:producto_id>/', views.agregar_desde_carrito, name='agregar_desde_carrito'),
+    path('api/contacto/', enviar_mensaje_json, name='api_contacto'),
+    path('api/tipo-cambio/', tipo_cambio_api, name='tipo_cambio_api'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

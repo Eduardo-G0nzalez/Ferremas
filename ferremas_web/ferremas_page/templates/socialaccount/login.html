@@ -14,27 +14,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="{% static 'css/navbarr.css' %}" rel="stylesheet">
     <link href="{% static 'css/foot.css' %}" rel="stylesheet">
-    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <link href="{% static 'css/logingoogle.css' %}" rel="stylesheet">
     
 </head>
 <body>
 
     {% include 'comunes/navbar.html' %}
-<div class="container py-5">
-    <div class="text-center">
-      <h2>Confirmar inicio de sesión</h2>
-      <p>Estás a punto de iniciar sesión con tu cuenta de Google. ¿Deseas continuar?</p>
-  
-      <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary">Continuar</button>
-      </form>
+
+    <div class="container py-5 flex-grow-1 d-flex justify-content-center align-items-center">
+      <div class="bg-white p-5 rounded shadow text-center" style="max-width: 500px;">
+        <h2 class="fw-bold mb-3">Confirmar inicio de sesión</h2>
+        <p class="mb-4">Estás a punto de iniciar sesión con tu cuenta de Google. ¿Deseas continuar?</p>
+        <form method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-google w-100">
+            <i class="fab fa-google google-icon"></i> Continuar con Google
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
 
   {% include 'comunes/footer.html' %}
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="{% static 'js/redirproducto.js' %}"></script>
 </body>
 </html>

@@ -20,7 +20,6 @@ class RegistroFormPersonalizado(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Añadir clases CSS y placeholders personalizados
         self.fields['username'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'Tu nombre de usuario'

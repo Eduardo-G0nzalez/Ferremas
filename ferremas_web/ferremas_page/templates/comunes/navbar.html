@@ -5,34 +5,52 @@
       <img src="{% static 'img/LogoFerremas.svg' %}" alt="Logo Ferremas" height="40">
     </a>
 
-    <div class="d-flex align-items-center ms-auto d-lg-none gap-2">
-      <button class="navbar-toggler texto-navbar border-0" type="button" data-bs-toggle="modal" data-bs-target="#navbarModal">
-        <i class="fa-solid fa-bars fa-lg"></i>
-      </button>
-    
+    <div class="d-flex align-items-center ms-auto d-lg-none gap-3">
+
+      <!-- Ícono de Usuario (Dropdown) -->
       <div class="dropdown">
-        <a class="nav-link dropdown-toggle texto-navbar" href="#" role="button" id="usuarioDropdownMovil" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fas fa-user-circle fa-xl"></i>
+        <a class="nav-link d-flex align-items-center justify-content-center p-0" href="#" role="button"
+           id="usuarioDropdownMovil" data-bs-toggle="dropdown" aria-expanded="false"
+           style="width: 38px; height: 38px;">
+          <i class="fas fa-user-circle fa-lg"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdownMovil">
           {% if user.is_authenticated %}
             <li><span class="dropdown-item-text fw-semibold text-muted">{{ user.username }}</span></li>
             <li><hr class="dropdown-divider"></li>
             <li>
-              <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
+              <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Cerrar sesión
+              </a>
             </li>
           {% else %}
-            <li>
-              <a class="dropdown-item" href="{% url 'login' %}#login-form">Acceder</a>
-            </li>
+            <li><a class="dropdown-item" href="{% url 'login' %}#login-form">Acceder</a></li>
           {% endif %}
         </ul>
       </div>
+    
+      <!-- Ícono de Carrito -->
+      <div>
+        <a class="nav-link d-flex align-items-center justify-content-center p-0" href="{% url 'ver_carrito' %}"
+           style="width: 38px; height: 38px;">
+          <i class="fas fa-shopping-cart fa-lg"></i>
+        </a>
+      </div>
+    
+      <!-- Botón Hamburguesa -->
+      <button class="navbar-toggler border-0 p-0 d-flex align-items-center justify-content-center"
+              type="button" data-bs-toggle="modal" data-bs-target="#navbarModal"
+              style="width: 38px; height: 38px;">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </button>
+    
     </div>
+    
     
 
     <!-- Menú normal visible solo en escritorio -->
     <div class="d-none d-lg-flex ms-auto align-items-center texto-navbar">
+      
       <ul class="navbar-nav align-items-center">
         {% if request.path == '/' %}
           <li class="nav-item"><a class="nav-link texto-navbar fw-semibold mx-2" href="#inicio">INICIO</a></li>
@@ -68,7 +86,13 @@
           {% endif %}
         </ul>
       </div>
+      <div class="nav-item ms-4">
+        <a class="nav-link texto-navbar" href="{% url 'ver_carrito' %}">
+          <i class="fas fa-shopping-cart fa-lg"></i>
+        </a>
+      </div>    
     </div>
+
   </div>
 </nav>
 
@@ -92,12 +116,12 @@
         {% if request.path == '/' %}
         <a class="texto-navbar fw-bold fs-5" href="#inicio">INICIO</a>
         <a class="texto-navbar fw-bold fs-5" href="#quienes-somos">QUIÉNES SOMOS</a>
-        <a class="texto-navbar fw-bold fs-5" href="{% url 'productos' %}">PRODUCTOS</a>
+        <a class="texto-navbar fw-bold fs-5" href="#" id="link-productos-modal" data-url="{% url 'productos' %}">PRODUCTOS</a>
         <a class="texto-navbar fw-bold fs-5" href="#contacto">CONTACTO</a>
         {% else %}
         <a class="texto-navbar fw-bold fs-5" href="{% url 'home' %}#inicio">INICIO</a>
         <a class="texto-navbar fw-bold fs-5" href="{% url 'home' %}#quienes-somos">QUIÉNES SOMOS</a>
-        <a class="texto-navbar fw-bold fs-5" href="{% url 'productos' %}">PRODUCTOS</a>
+        <a class="texto-navbar fw-bold fs-5" href="#" id="link-productos-modal" data-url="{% url 'productos' %}">PRODUCTOS</a>
         <a class="texto-navbar fw-bold fs-5" href="{% url 'home' %}#contacto">CONTACTO</a>
         {% endif %}
 
